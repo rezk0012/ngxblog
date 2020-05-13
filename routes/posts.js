@@ -43,6 +43,7 @@ router.get('',(req, res, next) => {
 //Add a post to database
 router.post('', multer({storage:storage}).single("image"), (req, res, next) => {
   const url = 'https://' +req.get('host');
+  console.log(url);
   const post = new Post({
     _id: mongoose.Types.ObjectId(),
     title: req.body.title,
@@ -52,7 +53,8 @@ router.post('', multer({storage:storage}).single("image"), (req, res, next) => {
     likes: 0,
   })
   if (req.file) {
-    post.image = url + '/images/' + req.file.filename
+    post.image = url + '/images/' + req.file.filename;
+    console.log(post.image);
   } else {
     post.image = url + '/images/no-image-available.png'
   }
