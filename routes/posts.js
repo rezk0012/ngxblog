@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
     if(isValid){
       error = null;
     }
-    cb(error, "backend/images");
+    cb(error, "images");
    },
    filename: (req, file, cb)=> {
      const name = file.originalname.toLowerCase().split(' ').join('-');
@@ -43,7 +43,7 @@ router.get('',(req, res, next) => {
 //Add a post to database
 router.post('', multer({storage:storage}).single("image"), (req, res, next) => {
   console.log('I am here');
-  const url = 'https://' +req.get('host');
+  const url = req.protocol + '://' + req.get('host');
   console.log(url);
   const post = new Post({
     _id: mongoose.Types.ObjectId(),
