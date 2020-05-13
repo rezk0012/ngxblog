@@ -42,6 +42,7 @@ router.get('',(req, res, next) => {
 
 //Add a post to database
 router.post('', multer({storage:storage}).single("image"), (req, res, next) => {
+  console.log('I am here');
   const url = 'https://' +req.get('host');
   console.log(url);
   const post = new Post({
@@ -58,6 +59,7 @@ router.post('', multer({storage:storage}).single("image"), (req, res, next) => {
   } else {
     post.image = url + '/images/no-image-available.png'
   }
+  console.log(post);
 
   post.save()
   .then((post)=>{
