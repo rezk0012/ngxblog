@@ -16,7 +16,7 @@ mongoose.connect('mongodb+srv://User:Password01@cluster0-83jxn.mongodb.net/final
   console.log(error);
  })
 
-app.use('/images', express.static(path.join('images')))
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 
 app.use(express.json());
